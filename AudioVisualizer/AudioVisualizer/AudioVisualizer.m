@@ -8,7 +8,7 @@
 
 #import "AudioVisualizer.h"
 
-#define animateDuration 0.15
+#define animateDuration 0.35
 
 @interface AudioVisualizer()
 {
@@ -42,7 +42,7 @@
 
 - (void) addEqualizerBars
 {
-    CGFloat padding = (self.frame.size.width / self.barsNumber) / 3;
+    CGFloat padding = (self.frame.size.width / self.barsNumber) / 1.6;
     CGFloat rectHeight = self.frame.size.height-padding;
     CGFloat rectWidth = (self.frame.size.width-padding*(self.barsNumber+1))/self.barsNumber;
     rectArray = [[NSMutableArray alloc] init];
@@ -52,7 +52,8 @@
     for (int i = 0; i < self.barsNumber; i++)
     {
         UIView *rectangle = [[UIView alloc] init];
-        CGRect rectFrame = CGRectMake(padding+(padding+rectWidth)*i,padding+(rectHeight-rectWidth),rectWidth,rectWidth);
+//        CGRect rectFrame = CGRectMake(padding+(padding+rectWidth)*i,padding+(rectHeight-rectWidth),rectWidth,rectWidth);
+        CGRect rectFrame = CGRectMake(padding+(padding+rectWidth)*i,self.frame.size.height/2,rectWidth,rectWidth);
         initialBarHeight = rectWidth;
         
         [temp addObject:[NSValue valueWithCGRect:rectFrame]];
@@ -66,7 +67,7 @@
     }
     
     // add values for wave form
-    NSArray *values = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:5], [NSNumber numberWithInt:10], [NSNumber numberWithInt:15], [NSNumber numberWithInt:10], [NSNumber numberWithInt:5], [NSNumber numberWithInt:1], nil];
+    NSArray *values = [[NSArray alloc] initWithObjects:@1, @3, @10, @15, @3, @15, @10, @5, nil];
     
     waveFormArray = [[NSMutableArray alloc] init];
     int j = 0;
@@ -88,24 +89,46 @@
                          animations:^{
                              for (int i = 0; i < self.barsNumber; i++)
                              {
+                                 int frameHeight = self.frame.size.height-30;
                                  int channelValue = arc4random_uniform(2); // random select channel 0 or channel 1
-                                 int wavePeak = arc4random_uniform([[waveFormArray objectAtIndex:i] intValue]);
+                                 int wavePeak = arc4random_uniform(frameHeight);
                                  
                                  UIView *barView = (UIView *)[rectArray objectAtIndex:i];
                                  
-                                 CGRect barFrame = barView.frame;
-                                 if (channelValue == 0)
-                                 {
-                                     barFrame.size.height = self.frame.size.height - (1 / level0 * 13) + wavePeak;
-                                 }
-                                 else
-                                 {
-                                     barFrame.size.height = self.frame.size.height - (1 / level1 * 13) + wavePeak;
+//                                 CGRect barFrame = barView.frame;
+//                                 if (channelValue == 0)
+//                                 {
+//                                     barFrame.size.height = self.frame.size.height - (1 / level0 * 13) + wavePeak;
+//                                 }
+//                                 else
+//                                 {
+//                                     barFrame.size.height = self.frame.size.height - (1 / level1 * 13) + wavePeak;
+//                                 }
+                                 
+//                                 if (barFrame.size.height < 4 || barFrame.size.height > self.frame.size.height){
+//                                    barFrame.size.height = initialBarHeight + wavePeak;
+//                                 }
+                                 
+//                                 barFrame.origin.y = self.frame.size.height - barFrame.size.height;
+//                                 barFrame.origin.y = 0;
+//                                 barView.frame = barFrame;
+                                 
+                                 
+                                 
+                                 CGFloat height = channelValue == 0 ? MIN(frameHeight, (1 / level0 * 13) + wavePeak) : MIN(frameHeight, (1 / level1 * 13) + wavePeak);
+                                 
+                                 if(i < 8 || i > self.barsNumber - 8){
+                                     height = arc4random_uniform(4) * arc4random_uniform(1) + (1 / level0 * 3) + wavePeak;
                                  }
                                  
-                                 if (barFrame.size.height < 4 || barFrame.size.height > self.frame.size.height) barFrame.size.height = initialBarHeight + wavePeak;
-                                 barFrame.origin.y = self.frame.size.height - barFrame.size.height;
-                                 barView.frame = barFrame;
+                                 CGFloat y = (self.frame.size.height - height) / 2.f;
+                                 
+                                 barView.frame = CGRectMake(barView.frame.origin.x, y, barView.frame.size.width, height);
+                                 
+                                 
+                                 
+                                 
+                                 
                              }
                          }
                          completion:nil];
@@ -124,7 +147,8 @@
                                  UIView *barView = (UIView *)[rectArray objectAtIndex:i];
                                  CGRect barFrame = barView.frame;
                                  barFrame.size.height = initialBarHeight;
-                                 barFrame.origin.y = self.frame.size.height - barFrame.size.height;
+//                                 barFrame.origin.y = self.frame.size.height - barFrame.size.height;
+                                  barFrame.origin.y = self.frame.size.height/2;
                                  barView.frame = barFrame;
                              }
                          }

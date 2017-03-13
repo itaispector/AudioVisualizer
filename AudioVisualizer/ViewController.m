@@ -69,8 +69,9 @@
     CGRect frame = _visualizerView.frame;
     frame.origin.x = 0;
     frame.origin.y = 0;
-    UIColor *visualizerColor = [UIColor colorWithRed:255.0 / 255.0 green:84.0 / 255.0 blue:116.0 / 255.0 alpha:1.0];
-    _audioVisualizer = [[AudioVisualizer alloc] initWithBarsNumber:11 frame:frame andColor:visualizerColor];
+//    UIColor *visualizerColor = [UIColor colorWithRed:255.0 / 255.0 green:84.0 / 255.0 blue:116.0 / 255.0 alpha:1.0];
+    UIColor*visualizerColor = [UIColor whiteColor];
+    _audioVisualizer = [[AudioVisualizer alloc] initWithBarsNumber:62 frame:frame andColor:visualizerColor];
     [_visualizerView addSubview:_audioVisualizer];
 }
 

@@ -182,6 +182,7 @@
 				TargetAttributes = {
 					844BBCA61D224D8A007EF1B6 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = TU53ZG26Q6;
 					};
 				};
 			};
@@ -345,10 +346,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TU53ZG26Q6;
 				INFOPLIST_FILE = AudioVisualizer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = SIC.AudioVisualizer;
+				PRODUCT_BUNDLE_IDENTIFIER = itaispector.AudioVisualizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -357,10 +359,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TU53ZG26Q6;
 				INFOPLIST_FILE = AudioVisualizer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = SIC.AudioVisualizer;
+				PRODUCT_BUNDLE_IDENTIFIER = itaispector.AudioVisualizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -384,6 +387,7 @@
 				844BBCC01D224D8A007EF1B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
